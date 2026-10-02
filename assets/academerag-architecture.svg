@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="576" viewBox="0 0 830 576" role="img" aria-label="Conceptual architecture of AcademeRAG: ingestion, question path, ranking and generation.">
+  <title>AcademeRAG conceptual architecture</title>
+
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace; }
+    .h  { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+    .d  { font-size: 12px; fill: #9AA7B8; }
+    .bl { font-size: 11px; letter-spacing: 2px; fill: #9AA7B8; }
+
+    @keyframes flow { from { stroke-dashoffset: 12; } to { stroke-dashoffset: 0; } }
+    .fl { stroke-dasharray: 6 6; }
+    @media (prefers-reduced-motion: no-preference) {
+      .fl { animation: flow 1.2s linear infinite; }
+    }
+  </style>
+
+  <defs>
+    <marker id="mi" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 .5 6 3.5 0 6.5Z" fill="#7DD3FC"/>
+    </marker>
+    <marker id="ml" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 .5 6 3.5 0 6.5Z" fill="#A3E635"/>
+    </marker>
+  </defs>
+
+  <rect width="830" height="576" rx="12" fill="#0A0F14"/>
+  <rect x=".75" y=".75" width="828.5" height="574.5" rx="12" fill="none" stroke="#2B3A47" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text class="mono" x="24" y="30" font-size="12" fill="#A3E635" textLength="262" lengthAdjust="spacing">ACADEMERAG QUESTION ANSWERING</text>
+  <text class="mono" x="806" y="30" font-size="11" fill="#7C8B9C" text-anchor="end">CONCEPTUAL, REPOSITORY NOT PUBLIC</text>
+  <path d="M24 44H806" stroke="#2B3A47"/>
+
+  <!-- 01 / INGESTION -->
+  <text class="mono bl" x="24" y="66">01 / INGESTION</text>
+  <g fill="#0F161D" stroke="#7DD3FC" stroke-opacity=".6">
+    <rect x="24"  y="76" width="252" height="68" rx="7"/>
+    <rect x="289" y="76" width="252" height="68" rx="7"/>
+    <rect x="554" y="76" width="252" height="68" rx="7"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="100" fill="#7DD3FC">PDF CORPUS</text>
+    <text class="d" x="38"  y="119">documents folder</text>
+    <text class="d" x="38"  y="135">PyPDF parsing</text>
+
+    <text class="h" x="303" y="100" fill="#7DD3FC">COLLECTION SETUP</text>
+    <text class="d" x="303" y="119">Controlled rebuild</text>
+    <text class="d" x="303" y="135">of the collection</text>
+
+    <text class="h" x="568" y="100" fill="#7DD3FC">VECTOR STORE</text>
+    <text class="d" x="568" y="119">Milvus, local file</text>
+    <text class="d" x="568" y="135">or Zilliz Cloud</text>
+  </g>
+  <g stroke="#7DD3FC" stroke-width="1.4" opacity=".85">
+    <path d="M278 110h9" marker-end="url(#mi)"/>
+    <path d="M543 110h9" marker-end="url(#mi)"/>
+  </g>
+
+  <!-- The vector store serves the question path -->
+  <path class="fl" d="M680 144V198" fill="none" stroke="#7DD3FC" stroke-width="1.5" marker-end="url(#mi)"/>
+
+  <!-- 02 / QUESTION PATH -->
+  <text class="mono bl" x="24" y="190">02 / QUESTION PATH</text>
+  <g fill="#0F161D" stroke="#A3E635" stroke-opacity=".6">
+    <rect x="24"  y="200" width="252" height="68" rx="7"/>
+    <rect x="289" y="200" width="252" height="68" rx="7"/>
+    <rect x="554" y="200" width="252" height="68" rx="7"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="224" fill="#A3E635">REACT CLIENT</text>
+    <text class="d" x="38"  y="243">Streaming, cancellable</text>
+    <text class="d" x="38"  y="259">Sanitized Markdown</text>
+
+    <text class="h" x="303" y="224" fill="#A3E635">DJANGO REST API</text>
+    <text class="d" x="303" y="243">JWT auth, rate limits</text>
+    <text class="d" x="303" y="259">ask and ask/stream</text>
+
+    <text class="h" x="568" y="224" fill="#A3E635">RETRIEVAL</text>
+    <text class="d" x="568" y="243">Cloud when healthy</text>
+    <text class="d" x="568" y="259">Cached local fallback</text>
+  </g>
+  <g stroke="#A3E635" stroke-width="1.4" opacity=".85">
+    <path d="M278 234h9" marker-end="url(#ml)"/>
+    <path d="M543 234h9" marker-end="url(#ml)"/>
+  </g>
+
+  <path class="fl" d="M680 268V282H12V358H22" fill="none" stroke="#A3E635" stroke-width="1.5" marker-end="url(#ml)"/>
+
+  <!-- 03 / RANKING -->
+  <text class="mono bl" x="24" y="314">03 / RANKING</text>
+  <g fill="#0F161D" stroke="#A3E635" stroke-opacity=".6">
+    <rect x="24"  y="324" width="252" height="68" rx="7"/>
+    <rect x="289" y="324" width="252" height="68" rx="7"/>
+    <rect x="554" y="324" width="252" height="68" rx="7"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="348" fill="#A3E635">HYBRID SEARCH</text>
+    <text class="d" x="38"  y="367">Dense plus BM25</text>
+    <text class="d" x="38"  y="383">Score fusion (per README)</text>
+
+    <text class="h" x="303" y="348" fill="#A3E635">RERANK</text>
+    <text class="d" x="303" y="367">bge-reranker-v2-m3</text>
+    <text class="d" x="303" y="383">Score cutoff 0.2</text>
+
+    <text class="h" x="568" y="348" fill="#A3E635">CONTEXT</text>
+    <text class="d" x="568" y="367">Page-aware metadata</text>
+    <text class="d" x="568" y="383">Neighbor chunks, optional</text>
+  </g>
+  <g stroke="#A3E635" stroke-width="1.4" opacity=".85">
+    <path d="M278 358h9" marker-end="url(#ml)"/>
+    <path d="M543 358h9" marker-end="url(#ml)"/>
+  </g>
+
+  <path class="fl" d="M680 392V406H12V482H22" fill="none" stroke="#A3E635" stroke-width="1.5" marker-end="url(#ml)"/>
+
+  <!-- 04 / GENERATION -->
+  <text class="mono bl" x="24" y="438">04 / GENERATION</text>
+  <g fill="#0F161D" stroke-opacity=".6">
+    <rect x="24"  y="448" width="252" height="68" rx="7" stroke="#A3E635"/>
+    <rect x="289" y="448" width="252" height="68" rx="7" stroke="#A3E635"/>
+    <rect x="554" y="448" width="252" height="68" rx="7" stroke="#7DD3FC"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="472" fill="#A3E635">GROQ</text>
+    <text class="d" x="38"  y="491">Tried first when</text>
+    <text class="d" x="38"  y="507">configured</text>
+
+    <text class="h" x="303" y="472" fill="#A3E635">OLLAMA</text>
+    <text class="d" x="303" y="491">Fallback when</text>
+    <text class="d" x="303" y="507">reachable</text>
+
+    <text class="h" x="568" y="472" fill="#7DD3FC">SYLLABUS PATH</text>
+    <text class="d" x="568" y="491">Returns cleaned PDF text</text>
+    <text class="d" x="568" y="507">No LLM summary</text>
+  </g>
+  <path d="M278 482h9" stroke="#A3E635" stroke-width="1.4" opacity=".85" marker-end="url(#ml)"/>
+
+  <!-- Scope -->
+  <g class="mono" font-size="11" fill="#9AA7B8">
+    <text x="24" y="540">Conceptual summary drawn from the project README. The repository is not public.</text>
+    <text x="24" y="556">I have not verified retrieval order, fusion method or fallback behavior against code.</text>
+  </g>
+</svg>

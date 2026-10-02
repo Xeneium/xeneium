@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="240" viewBox="0 0 830 240" role="img" aria-label="Xeneium. AI Engineer working on fine-tuning and ML systems.">
+  <title>Xeneium. AI Engineer, fine-tuning and ML systems</title>
+
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace; }
+    .sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
+    /* The resting frame is the informative one: candidate A has cleared the
+       gate and candidate B is blocked, each marked by a glyph and a word. */
+    .pk { opacity: 0; }
+
+    @keyframes pktA { 0% { opacity: 0; transform: translateX(0); }
+                      4% { opacity: 1; transform: translateX(0); }
+                      36% { opacity: 1; transform: translateX(232px); }
+                      40%, 100% { opacity: 0; transform: translateX(232px); } }
+    @keyframes outA { 0%, 36% { opacity: 0; } 40%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+    @keyframes pktB { 0%, 50% { opacity: 0; transform: translateX(0); }
+                      54% { opacity: 1; transform: translateX(0); }
+                      82% { opacity: 1; transform: translateX(162px); }
+                      95% { opacity: 1; transform: translateX(162px); }
+                      99%, 100% { opacity: 0; transform: translateX(162px); } }
+    @keyframes outB { 0%, 82% { opacity: 0; } 87%, 95% { opacity: 1; } 99%, 100% { opacity: 0; } }
+
+    /* Motion is added only when the viewer has not asked for less. With
+       reduce set, nothing moves and the resting frame tells the whole story. */
+    @media (prefers-reduced-motion: no-preference) {
+      .pa { animation: pktA 12s linear infinite; }
+      .pb { animation: pktB 12s linear infinite; }
+      .oa { animation: outA 12s linear infinite; }
+      .ob { animation: outB 12s linear infinite; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06090D"/>
+      <stop offset="55%" stop-color="#0A0F14"/>
+      <stop offset="100%" stop-color="#0C1319"/>
+    </linearGradient>
+    <linearGradient id="wm" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7DD3FC"/>
+      <stop offset="100%" stop-color="#A3E635"/>
+    </linearGradient>
+    <clipPath id="clip"><rect width="830" height="240" rx="12"/></clipPath>
+  </defs>
+
+  <rect width="830" height="240" rx="12" fill="url(#bg)"/>
+
+  <g clip-path="url(#clip)" stroke="#7DD3FC" stroke-width="1" opacity=".05">
+    <path d="M138 0V240M276 0V240M414 0V240M552 0V240M690 0V240"/>
+    <path d="M0 60H830M0 120H830M0 180H830"/>
+  </g>
+
+  <rect x=".75" y=".75" width="828.5" height="238.5" rx="12" fill="none" stroke="#2B3A47" stroke-width="1.5"/>
+
+  <!-- Identity -->
+  <text class="sans" x="40" y="96" font-size="54" font-weight="700" fill="url(#wm)" textLength="290" lengthAdjust="spacing">XENEIUM</text>
+  <text class="mono" x="41" y="124" font-size="12" fill="#A3E635" textLength="366" lengthAdjust="spacing">AI ENGINEER / FINE-TUNING + ML SYSTEMS</text>
+  <text class="sans" x="40" y="150" font-size="13.5" fill="#9AA7B8" textLength="380" lengthAdjust="spacing">Adapt the model. Prove it improved. Ship only what passes.</text>
+
+  <!-- Release gate panel -->
+  <rect x="452" y="30" width="338" height="128" rx="8" fill="#0F161D" stroke="#2B3A47"/>
+  <text class="mono" x="468" y="54" font-size="11" fill="#A3E635" textLength="96" lengthAdjust="spacing">RELEASE GATE</text>
+  <text class="mono" x="774" y="54" font-size="11" fill="#7C8B9C" text-anchor="end">CONCEPT</text>
+  <path d="M468 64H774" stroke="#2B3A47"/>
+
+  <g class="mono" font-size="11" fill="#7C8B9C" text-anchor="middle">
+    <text x="478" y="86">DATA</text>
+    <text x="536" y="86">TUNE</text>
+    <text x="594" y="86">EVAL</text>
+    <text x="652" y="86" fill="#7DD3FC">GATE</text>
+    <text x="710" y="86">SERVE</text>
+  </g>
+
+  <!-- Rail A: clears the gate -->
+  <path d="M478 104H710" stroke="#2B3A47" stroke-width="2"/>
+  <!-- Rail B: stops at the gate -->
+  <path d="M478 136H652" stroke="#2B3A47" stroke-width="2"/>
+
+  <g fill="#0F161D" stroke="#7C8B9C" stroke-width="1.5">
+    <circle cx="478" cy="104" r="3.5"/><circle cx="536" cy="104" r="3.5"/><circle cx="594" cy="104" r="3.5"/>
+    <circle cx="478" cy="136" r="3.5"/><circle cx="536" cy="136" r="3.5"/><circle cx="594" cy="136" r="3.5"/>
+  </g>
+  <circle cx="710" cy="104" r="3.5" fill="#A3E635" stroke="#A3E635" stroke-width="1.5"/>
+
+  <rect x="649" y="92" width="6" height="56" rx="3" fill="#0F161D" stroke="#7DD3FC" stroke-width="1.5"/>
+
+  <!-- Outcomes: glyph plus word, never colour alone -->
+  <g class="oa">
+    <path d="M730 104l4 4 8-9" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text class="mono" x="747" y="108" font-size="11" fill="#A3E635">PASS</text>
+  </g>
+  <g class="ob">
+    <path d="M664 132l8 8M672 132l-8 8" fill="none" stroke="#FB923C" stroke-width="2" stroke-linecap="round"/>
+    <text class="mono" x="680" y="140" font-size="11" fill="#FB923C">REGRESSION</text>
+  </g>
+
+  <!-- Candidates in motion -->
+  <g class="pk pa"><rect x="474" y="100" width="8" height="8" rx="2" fill="#A3E635"/></g>
+  <g class="pk pb"><rect x="474" y="132" width="8" height="8" rx="2" fill="#FB923C"/></g>
+
+  <!-- Evidence strip -->
+  <path d="M40 176H790" stroke="#2B3A47" stroke-width="1"/>
+  <g class="mono">
+    <text x="40"  y="198" font-size="11" letter-spacing="1.5" fill="#9AA7B8">FINE-TUNING</text>
+    <text x="40"  y="218" font-size="12" fill="#E6EDF3">Adaptation and release gates</text>
+
+    <text x="304" y="198" font-size="11" letter-spacing="1.5" fill="#9AA7B8">RETRIEVAL</text>
+    <text x="304" y="218" font-size="12" fill="#E6EDF3">Hybrid search, reranking</text>
+
+    <text x="568" y="198" font-size="11" letter-spacing="1.5" fill="#9AA7B8">SERVING</text>
+    <text x="568" y="218" font-size="12" fill="#E6EDF3">ONNX Runtime, health probes</text>
+  </g>
+  <g>
+    <rect x="32"  y="187" width="2" height="12" rx="1" fill="#A3E635"/>
+    <rect x="296" y="187" width="2" height="12" rx="1" fill="#7DD3FC"/>
+    <rect x="560" y="187" width="2" height="12" rx="1" fill="#A3E635"/>
+  </g>
+</svg>

@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="830" height="548" viewBox="0 0 830 548" role="img" aria-label="From data to served model: adapt and evaluate, export and serve, controls at the edge.">
+  <title>From data to served model</title>
+
+  <style>
+    .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", "Liberation Mono", monospace; }
+    .h  { font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+    .d  { font-size: 12px; fill: #9AA7B8; }
+    .bl { font-size: 11px; letter-spacing: 2px; fill: #9AA7B8; }
+
+    /* Dashes travel along the two long connectors so the diagram reads as a
+       pipeline with a direction. With reduce set they stay as static dashes. */
+    @keyframes flow { from { stroke-dashoffset: 12; } to { stroke-dashoffset: 0; } }
+    .fl { stroke-dasharray: 6 6; }
+    @media (prefers-reduced-motion: no-preference) {
+      .fl { animation: flow 1.2s linear infinite; }
+    }
+  </style>
+
+  <defs>
+    <marker id="mi" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 .5 6 3.5 0 6.5Z" fill="#7DD3FC"/>
+    </marker>
+    <marker id="ml" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 .5 6 3.5 0 6.5Z" fill="#A3E635"/>
+    </marker>
+  </defs>
+
+  <rect width="830" height="548" rx="12" fill="#0A0F14"/>
+  <rect x=".75" y=".75" width="828.5" height="546.5" rx="12" fill="none" stroke="#2B3A47" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <text class="mono" x="24" y="30" font-size="12" fill="#A3E635" textLength="230" lengthAdjust="spacing">FROM DATA TO SERVED MODEL</text>
+  <text class="mono" x="806" y="30" font-size="11" fill="#7C8B9C" text-anchor="end">DASHED: PROPRIETARY, NOT PUBLIC</text>
+  <path d="M24 44H806" stroke="#2B3A47"/>
+
+  <!-- 01 / ADAPT AND EVALUATE (proprietary, concept) -->
+  <text class="mono bl" x="24" y="68">01 / ADAPT AND EVALUATE</text>
+  <g fill="#0F161D" stroke="#7DD3FC" stroke-opacity=".6" stroke-dasharray="5 4">
+    <rect x="24"  y="78" width="185" height="68" rx="7"/>
+    <rect x="223" y="78" width="185" height="68" rx="7"/>
+    <rect x="422" y="78" width="185" height="68" rx="7"/>
+    <rect x="621" y="78" width="185" height="68" rx="7"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="102" fill="#7DD3FC">CURATE</text>
+    <text class="d" x="38"  y="121">Dedupe, split, QA</text>
+    <text class="d" x="38"  y="137">Frozen eval set</text>
+
+    <text class="h" x="237" y="102" fill="#7DD3FC">ADAPT</text>
+    <text class="d" x="237" y="121">Fine-tune weights</text>
+    <text class="d" x="237" y="137">Baseline kept</text>
+
+    <text class="h" x="436" y="102" fill="#7DD3FC">EVALUATE</text>
+    <text class="d" x="436" y="121">Held-out set</text>
+    <text class="d" x="436" y="137">Compared to baseline</text>
+
+    <text class="h" x="635" y="102" fill="#7DD3FC">RELEASE GATE</text>
+    <text class="d" x="635" y="121">No regression,</text>
+    <text class="d" x="635" y="137">no release</text>
+  </g>
+  <g stroke="#7DD3FC" stroke-width="1.4" opacity=".85">
+    <path d="M211 112h10" marker-end="url(#mi)"/>
+    <path d="M410 112h10" marker-end="url(#mi)"/>
+    <path d="M609 112h10" marker-end="url(#mi)"/>
+  </g>
+
+  <!-- Only a checkpoint that clears the gate moves on -->
+  <path class="fl" d="M713 146V160H12V234H22" fill="none" stroke="#A3E635" stroke-width="1.5" marker-end="url(#ml)"/>
+  <text class="mono" x="705" y="177" font-size="11" fill="#9AA7B8" text-anchor="end">checkpoints that clear the gate</text>
+
+  <!-- 02 / EXPORT AND SERVE (public: Emotion_Detection) -->
+  <text class="mono bl" x="24" y="190">02 / EXPORT AND SERVE</text>
+  <g fill="#0F161D" stroke="#A3E635" stroke-opacity=".6">
+    <rect x="24"  y="200" width="185" height="68" rx="7"/>
+    <rect x="223" y="200" width="185" height="68" rx="7"/>
+    <rect x="422" y="200" width="185" height="68" rx="7"/>
+    <rect x="621" y="200" width="185" height="68" rx="7"/>
+  </g>
+  <g class="mono">
+    <text class="h" x="38"  y="224" fill="#A3E635">EXPORT</text>
+    <text class="d" x="38"  y="243">Checkpoint to ONNX</text>
+    <text class="d" x="38"  y="259">FP32 baseline</text>
+
+    <text class="h" x="237" y="224" fill="#A3E635">TAG</text>
+    <text class="d" x="237" y="243">HMAC-SHA256 tag</text>
+    <text class="d" x="237" y="259">Manifest with hash</text>
+
+    <text class="h" x="436" y="224" fill="#A3E635">LOAD CHECK</text>
+    <text class="d" x="436" y="243">SHA-256 and tag</text>
+    <text class="d" x="436" y="259">must both match</text>
+
+    <text class="h" x="635" y="224" fill="#A3E635">SERVE</text>
+    <text class="d" x="635" y="243">Django, ONNX Runtime</text>
+    <text class="d" x="635" y="259">Health and readiness</text>
+  </g>
+  <g stroke="#A3E635" stroke-width="1.4" opacity=".85">
+    <path d="M211 234h10" marker-end="url(#ml)"/>
+    <path d="M410 234h10" marker-end="url(#ml)"/>
+    <path d="M609 234h10" marker-end="url(#ml)"/>
+  </g>
+
+  <path class="fl" d="M713 268V312" fill="none" stroke="#A3E635" stroke-width="1.5" marker-end="url(#ml)"/>
+
+  <!-- 03 / CONTROLS AT THE EDGE -->
+  <text class="mono bl" x="24" y="300">03 / CONTROLS AT THE EDGE</text>
+  <rect x="24" y="312" width="782" height="156" rx="8" fill="#0F161D" stroke="#2B3A47"/>
+  <g class="mono" font-size="11" letter-spacing="1.5" fill="#9AA7B8">
+    <text x="40"  y="331">WHAT GOES WRONG</text>
+    <text x="420" y="331">WHAT STOPS IT</text>
+  </g>
+  <path d="M24 340H806" stroke="#2B3A47"/>
+  <g stroke="#1C2630">
+    <path d="M24 372H806"/><path d="M24 404H806"/><path d="M24 436H806"/>
+  </g>
+
+  <g fill="#FB923C">
+    <circle cx="46" cy="357" r="3"/><circle cx="46" cy="389" r="3"/>
+    <circle cx="46" cy="421" r="3"/><circle cx="46" cy="453" r="3"/>
+  </g>
+  <g fill="none" stroke="#A3E635" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M426 357l3.5 3.5 7-8"/><path d="M426 389l3.5 3.5 7-8"/>
+    <path d="M426 421l3.5 3.5 7-8"/><path d="M426 453l3.5 3.5 7-8"/>
+  </g>
+  <g class="mono" font-size="12" fill="#E6EDF3">
+    <text x="58" y="361">Model file changed on disk</text>
+    <text x="58" y="393">Request without consent</text>
+    <text x="58" y="425">Missing or invalid credentials</text>
+    <text x="58" y="457">Request volume over the limit</text>
+
+    <text x="446" y="361">Load refused on hash or tag mismatch</text>
+    <text x="446" y="393">Rejected with HTTP 451</text>
+    <text x="446" y="425">Rejected with HTTP 401</text>
+    <text x="446" y="457">Rejected with HTTP 429</text>
+  </g>
+
+  <!-- Scope -->
+  <g class="mono" font-size="11" fill="#9AA7B8">
+    <text x="24" y="492">The tag check shows the file is unchanged since bootstrap on that machine.</text>
+    <text x="24" y="508">It does not show where the checkpoint came from.</text>
+    <text x="24" y="524">Emotion_Detection serves a third-party checkpoint, so stages 1 to 4 are not part of it.</text>
+  </g>
+</svg>

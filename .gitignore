@@ -1,0 +1,10 @@
+# Claude Code / oh-my-claudecode operational state
+.omc/
+.claude/
+
+# Local-only project instructions (not for a public repo)
+CLAUDE.md
+CLAUDE.local.md
+
+# macOS
+.DS_Store
