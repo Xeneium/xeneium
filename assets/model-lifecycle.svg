@@ -79,15 +79,15 @@
   <g class="mono">
     <text class="h" x="38"  y="224" fill="#A3E635">EXPORT</text>
     <text class="d" x="38"  y="243">Checkpoint to ONNX</text>
-    <text class="d" x="38"  y="259">FP32 baseline</text>
+    <text class="d" x="38"  y="259">opset 17, FP32</text>
 
     <text class="h" x="237" y="224" fill="#A3E635">TAG</text>
     <text class="d" x="237" y="243">HMAC-SHA256 tag</text>
-    <text class="d" x="237" y="259">Manifest with hash</text>
+    <text class="d" x="237" y="259">Tag over file hashes</text>
 
     <text class="h" x="436" y="224" fill="#A3E635">LOAD CHECK</text>
-    <text class="d" x="436" y="243">SHA-256 and tag</text>
-    <text class="d" x="436" y="259">must both match</text>
+    <text class="d" x="436" y="243">SHA-256 always,</text>
+    <text class="d" x="436" y="259">tag in strict mode</text>
 
     <text class="h" x="635" y="224" fill="#A3E635">SERVE</text>
     <text class="d" x="635" y="243">Django, ONNX Runtime</text>
@@ -122,12 +122,12 @@
     <path d="M426 421l3.5 3.5 7-8"/><path d="M426 453l3.5 3.5 7-8"/>
   </g>
   <g class="mono" font-size="12" fill="#E6EDF3">
-    <text x="58" y="361">Model file changed on disk</text>
+    <text x="58" y="361">Model file changed since signing</text>
     <text x="58" y="393">Request without consent</text>
     <text x="58" y="425">Missing or invalid credentials</text>
     <text x="58" y="457">Request volume over the limit</text>
 
-    <text x="446" y="361">Load refused on hash or tag mismatch</text>
+    <text x="446" y="361">Model not loaded, marked degraded</text>
     <text x="446" y="393">Rejected with HTTP 451</text>
     <text x="446" y="425">Rejected with HTTP 401</text>
     <text x="446" y="457">Rejected with HTTP 429</text>
@@ -135,8 +135,8 @@
 
   <!-- Scope -->
   <g class="mono" font-size="11" fill="#9AA7B8">
-    <text x="24" y="492">The tag check shows the file is unchanged since bootstrap on that machine.</text>
-    <text x="24" y="508">It does not show where the checkpoint came from.</text>
+    <text x="24" y="492">The checks show the file is unchanged since it was last signed with this key.</text>
+    <text x="24" y="508">They do not show where the checkpoint came from.</text>
     <text x="24" y="524">Emotion_Detection serves a third-party checkpoint, so stages 1 to 4 are not part of it.</text>
   </g>
 </svg>

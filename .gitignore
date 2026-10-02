@@ -8,3 +8,7 @@ CLAUDE.local.md
 
 # macOS
 .DS_Store
+
+# Local source archives and extracted project code (never publish)
+Sabari Projects/
+*.zip
